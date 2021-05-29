@@ -20,6 +20,7 @@ html {
   --maxWidth:1000px;
   --bs:0 12px 24px 0 rgba(0,0,0,0.08);
   box-sizing:border-box;
+  font-size:10px;
 }
 *,*:after,*:before{
   box-sizing:inherit;
