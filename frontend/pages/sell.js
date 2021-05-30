@@ -1,3 +1,9 @@
+import CreateProduct from '../components/CreateProduct';
+
 export default function IndexPage() {
-  return <p>I am Sell Page.</p>;
+  return (
+    <div>
+      <CreateProduct />
+    </div>
+  );
 }
