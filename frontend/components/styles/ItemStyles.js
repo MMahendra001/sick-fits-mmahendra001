@@ -22,7 +22,7 @@ const ItemStyles = styled.div`
     display: grid;
     width: 100%;
     border-top: 1px solid var(--lightGray);
-    grid-template-columns: repeat(auto-fit, min-max(100px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     grid-gap: 1px;
     background: var(--lightGray);
     & > * {
