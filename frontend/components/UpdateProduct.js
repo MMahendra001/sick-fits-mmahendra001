@@ -74,7 +74,7 @@ export default function UpdateProduct({ id }) {
         // });
       }}
     >
-      <DisplayError error={updateError} />
+      <DisplayError error={error || updateError} />
 
       <fieldset disabled={updateLoading} aria-busy={updateLoading}>
         <label htmlFor="name">
