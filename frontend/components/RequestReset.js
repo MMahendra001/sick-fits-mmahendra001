@@ -53,6 +53,7 @@ export default function RequestReset() {
             placeholder="Your Email Address"
             value={inputs.email}
             onChange={handleChange}
+            required
           />
         </label>
         <button type="submit">Request Reset!</button>

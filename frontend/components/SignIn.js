@@ -38,7 +38,7 @@ export default function SignIn() {
     e.preventDefault();
     // console.log(inputs);
     const res = await signin();
-    console.log(res);
+    // console.log(res);
     resetForm();
   }
 
@@ -61,6 +61,7 @@ export default function SignIn() {
             placeholder="Your Email Address"
             value={inputs.email}
             onChange={handleChange}
+            required
           />
         </label>
         <label htmlFor="password">
@@ -71,6 +72,7 @@ export default function SignIn() {
             placeholder="Your Password"
             value={inputs.password}
             onChange={handleChange}
+            required
           />
         </label>
         <button type="submit">Sign In!</button>

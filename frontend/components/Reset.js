@@ -35,8 +35,8 @@ export default function Reset({ token }) {
     e.preventDefault();
     // console.log(inputs);
     const res = await reset().catch(console.error);
-    console.log(res);
-    console.log({ data, loading, error });
+    // console.log(res);
+    // console.log({ data, loading, error });
     resetForm();
     // Send email and password to graphqlAPI.
   }
@@ -62,6 +62,7 @@ export default function Reset({ token }) {
             placeholder="Your Email Address"
             value={inputs.email}
             onChange={handleChange}
+            required
           />
         </label>
         <label htmlFor="password">
@@ -72,6 +73,7 @@ export default function Reset({ token }) {
             placeholder="Your Password"
             value={inputs.password}
             onChange={handleChange}
+            required
           />
         </label>
         <button type="submit">Reset!</button>

@@ -60,6 +60,7 @@ export default function SignUp() {
             placeholder="Your Name"
             value={inputs.name}
             onChange={handleChange}
+            required
           />
         </label>
         <label htmlFor="email">
@@ -70,6 +71,7 @@ export default function SignUp() {
             placeholder="Your Email Address"
             value={inputs.email}
             onChange={handleChange}
+            required
           />
         </label>
         <label htmlFor="password">
@@ -80,6 +82,7 @@ export default function SignUp() {
             placeholder="Your Password"
             value={inputs.password}
             onChange={handleChange}
+            required
           />
         </label>
         <button type="submit">Sign Up!</button>

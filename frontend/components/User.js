@@ -5,9 +5,23 @@ export const CURRENT_USER_QUERY = gql`
     authenticatedItem {
       ... on User {
         id
-        email
         name
-        # TODO : Query the cart ones we have it.
+        email
+        cart {
+          id
+          quantity
+          product {
+            id
+            name
+            description
+            price
+            photo {
+              image {
+                publicUrlTransformed
+              }
+            }
+          }
+        }
       }
     }
   }

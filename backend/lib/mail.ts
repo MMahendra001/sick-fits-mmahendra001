@@ -51,7 +51,6 @@ export async function sendPasswordResetEmail(
     from: 'mmahendra001@gmail.com',
     subject: 'Your password reset token',
     html: makeANiceEmail(`Your Password Reset Token is here!
-
         <a href="${process.env.FRONTEND_URL}/reset?token=${resetToken}" target="_blank">Click here to reset</a>
         `),
   })) as MailResponse;
