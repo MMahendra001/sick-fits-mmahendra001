@@ -8,6 +8,7 @@ import { ProductImage } from './schemas/ProductImage';
 import { CartItem } from './schemas/CartItem';
 import { insertSeedData } from './seed-data';
 import { sendPasswordResetEmail } from './lib/mail';
+import { extendGraphqlSchema } from './mutations';
 
 const databaseURL =
   process.env.DATABASE_URL || 'mongodb://localhost/keystone-sick-fits-tutorial';
@@ -25,10 +26,10 @@ const { withAuth } = createAuth({
     fields: ['name', 'email', 'password'],
     // TODO: Add initial roles here.
   },
-  passwordResetLink:{
-    async sendToken(args){
+  passwordResetLink: {
+    async sendToken(args) {
       //Send the mail
-      await sendPasswordResetEmail(args.token,args.identity)
+      await sendPasswordResetEmail(args.token, args.identity)
     },
   },
 });
@@ -46,11 +47,12 @@ export default withAuth(
       url: databaseURL,
       async onConnect(keystone) {
         console.log('Connected to a Database.');
-        if(process.argv.includes('--seed-data')){
+        if (process.argv.includes('--seed-data')) {
           await insertSeedData(keystone);
         }
       },
-     },
+    },
+    extendGraphqlSchema,
     lists: createSchema({
       // Schema items go in here
       User,
@@ -67,5 +69,5 @@ export default withAuth(
     },
     session: withItemData(statelessSessions(sessionConfig), {
       User: `id name email`,
-    })
+    }),
   }));
