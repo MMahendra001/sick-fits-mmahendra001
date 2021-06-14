@@ -22,6 +22,7 @@ const CartStyles = styled.div`
     padding: 0px;
     list-style: none;
     overflow: scroll;
+    max-height: 60vh;
   }
 
   header {

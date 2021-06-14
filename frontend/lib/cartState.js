@@ -29,7 +29,9 @@ function CartStateProvider({ children }) {
 }
 
 // make a custom hook for accessing the cart local state : like useUser
+
 // it's solves this: From now there is  no need to import useContext and LocalStateContext whenever we need cart state.Use useCart custom hook instead.
+
 function useCart() {
   const data = useContext(LocalStateContext);
   return data;

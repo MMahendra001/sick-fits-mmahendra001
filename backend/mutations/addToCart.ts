@@ -27,15 +27,17 @@ async function addToCart(
         console.log(`There are already ${existingCartItem.quantity},increment it by 1!`);
         return await context.lists.CartItem.updateOne({
             id: existingCartItem.id,
-            data: { quantity: existingCartItem.quantity + 1, }
+            data: { quantity: existingCartItem.quantity + 1, },
+            resolveFields: false,
         })
     }
     //5.If it isn't create a new cart item!
     return await context.lists.CartItem.createOne({
         data: {
             product: { connect: { id: productId } },
-            user: { connect: { id: sesh.itemId } }
-        }
+            user: { connect: { id: sesh.itemId } },
+        },
+        resolveFields: false,
     })
 }
 export default addToCart;
@@ -43,15 +45,15 @@ export default addToCart;
 
 
 //Note:
-// For client side we have graphQL api to get all the data we want.:ex: currently logged in user and it's cart with : authenticatedItem query  rem? >> user.cart and user.cart.product.name.......
+// For client side we have graphQL api to get all the data we want.:
+//ex: currently logged in user and it's cart with : authenticatedItem query  rem?
+//>> user.cart and user.cart.product.name.......
 
 // But here in back end all the data available in context api.Ex:logged in user >> context.session
 
 //console.log('add to cart') , console.log(sesh) or run addToCart mutation in graphql end point
 
 //>> look into backend terminal and Admin UI for result and test logs just like that reset pass email.Little bit slow though.
-
-
 
 /*
 
@@ -214,17 +216,21 @@ checkout:https://next.keystonejs.com/apis/list-items  >> read about those lists
 
 we did use this
 
-await context.lists.CartItem.findMany  >> which did act like our regular query fetch in client slide ::         query{
+await context.lists.CartItem.findMany  >> which did act like our regular query fetch in client slide ::
+    query{
         allCartItems{
             id
-            quantity  .... with some where () like functionality we used to.We are using it every single time when we are adding any product in our cart.
+            quantity  .... with some where () like functionality we used to.We are using it every single time
+                            when we are adding any product in our cart.
 
             // like hey there look for this specific product is already there in cart or !.
 
 if it is...then
 we will use below one to make increment logic:
 
-context.lists.CartItem.updateOne  >> this one will act like mutation :: which will take id and data just like our updateProduct mutation as we did in our client side.
+context.lists.CartItem.updateOne  >> this one will act like mutation ::
+                                     which will take id and data just like our updateProduct
+                                     mutation as we did in our client side.
 
 // it's similar but we are just doing it with context here.
 
@@ -370,7 +376,8 @@ There are already 2,increment it by 1!
 -----------
     //note :: context.lists.CartItem.createOne act like our creatProduct mutation we need to pass data here...
 
-    // but unlike product our cart we are dealing with cartItem fields that have relationship with other datatype so >> we have this "connect" thing here to create relationship thingy : (not in the doc yet: tx wes )
+    // but unlike product our cart we are dealing with cartItem fields that have relationship with other datatype so
+    >> we have this "connect" thing here to create relationship thingy : (not in the doc yet: tx wes )
 
 ---------------
 run: new prdocut id which is not in carts yet.
@@ -400,7 +407,11 @@ ADDING TO CART   >> third time 2 + 1
 }
 There are already 2,increment it by 1!
 
-Add done this was fun : works like charm.
+--------------------------------
+Set updateOne and createOne >>  resolveFields: false, :: if you are not returning  anything from them or you will
+get error when you run those addCart mutation on client side.
+
+All done this was fun : works like charm.
 
 */
 

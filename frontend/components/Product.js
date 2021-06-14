@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import formatMoney from '../lib/formatMoney';
+import AddToCart from './AddToCart';
 import DeleteProduct from './DeleteProduct';
 import ItemStyles from './styles/ItemStyles';
 import PriceTag from './styles/PriceTag';
@@ -17,7 +18,6 @@ export default function Product({ product }) {
       </Title>
       <PriceTag>{formatMoney(product.price)}</PriceTag>
       <p>{product.description}</p>
-      {/* TODO: add buttons to edit and delete */}
       <div className="buttonList">
         <Link
           href={{
@@ -27,6 +27,7 @@ export default function Product({ product }) {
         >
           Edit ✏️
         </Link>
+        <AddToCart id={product.id} />
         <DeleteProduct id={product.id}>Delete</DeleteProduct>
       </div>
     </ItemStyles>
