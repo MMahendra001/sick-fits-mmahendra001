@@ -20,7 +20,6 @@ export default function Nav() {
           <SignOut />
           <button type="button" onClick={openCart}>
             My Cart
-            {console.log(user)}
             <CartCount
               count={user.cart.reduce(
                 (tally, cartItem) => tally + cartItem.quantity,
