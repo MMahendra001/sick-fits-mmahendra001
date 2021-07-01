@@ -8,6 +8,7 @@ import CloseButton from './styles/CloseButton';
 
 import { useUser } from './User';
 import RemoveFromCart from './RemoveFromCart';
+import { Checkout } from './Checkout';
 
 const CartItemStyles = styled.li`
   padding: 1rem 0;
@@ -67,6 +68,7 @@ export default function Cart() {
       </ul>
       <footer>
         <p>Total : {formatMoney(calcTotalPrice(me.cart))}</p>
+        <Checkout />
       </footer>
     </CartStyles>
   );
