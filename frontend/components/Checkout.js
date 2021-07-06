@@ -31,7 +31,7 @@ function CheckoutForm() {
     // 1. Stop the form from submitting and turn the loader on.
     e.preventDefault();
     setLoading(true);
-    console.log('We have to some work.');
+    console.log('We have to do some work.');
     // 2.Start the page transition
     nProgress.start();
     // 3. Create the payment method via stripe.(Token comes back here if it will be successful.)
@@ -44,7 +44,6 @@ function CheckoutForm() {
     if (error) {
       setError(error);
     }
-    console.log(error);
     // 5. Send the token from step 3 to our keystone server via custom mutation.
     // 6. Change the page to view the order
     // 7. Close the cart
