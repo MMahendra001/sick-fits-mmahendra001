@@ -26,7 +26,8 @@ const CartItemStyles = styled.li`
 `;
 
 function CartItem({ cartItem }) {
-  const { product } = cartItem;
+  const { product } = cartItem; // took care of it here but update cart while you write checkout mutation in backend
+  if (!product) return null;
   return (
     <CartItemStyles>
       <img
