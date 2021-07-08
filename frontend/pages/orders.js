@@ -1,3 +1,5 @@
-export default function IndexPage() {
-  return <p>I am Orders Page.</p>;
+import Orders from '../components/Orders';
+
+export default function OrdersPage() {
+  return <Orders />;
 }

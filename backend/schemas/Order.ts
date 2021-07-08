@@ -9,7 +9,7 @@ export const Order = list({
     label: virtual({
       graphQLReturnType: 'String',
       resolver(item) {
-        return `COOL:${formatMoney(item.total)}`;
+        return `${formatMoney(item.total)}`;
       },
     }),
     total: integer(),
