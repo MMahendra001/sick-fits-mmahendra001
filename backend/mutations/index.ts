@@ -9,7 +9,7 @@ export const extendGraphqlSchema = graphQLSchemaExtension({
   typeDefs: graphql`
     type Mutation {
       addToCart(productId: ID): CartItem,
-      checkout(token: String) : Order
+      checkout(token: String!) : Order
     }
   `,
   resolvers: {

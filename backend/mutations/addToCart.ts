@@ -4,41 +4,41 @@ import { CartItemCreateInput } from '../.keystone/schema-types';
 import { Session } from '../types';
 
 async function addToCart(
-    root: any,
-    { productId }: { productId: string },
-    context: KeystoneContext
+  root: any,
+  { productId }: { productId: string },
+  context: KeystoneContext
 ): Promise<CartItemCreateInput> {
-    console.log('ADDING TO CART');
-    //1.Query the current user to see if they are logged in.
-    const sesh = context.session as Session;
-    if (!sesh.itemId) {
-        throw new Error('You must be logged in to do this!');
-    }
-    //2.Query the current user cart.
-    const allCartItems = await context.lists.CartItem.findMany({
-        where: { user: { id: sesh.itemId }, product: { id: productId } },
-        resolveFields: 'id,quantity',
-    });
-    //3.See if the current item is in their cart.
-    //4.If it is increment by 1,
-    const [existingCartItem] = allCartItems;
-    if (existingCartItem) {
-        console.log(existingCartItem);
-        console.log(`There are already ${existingCartItem.quantity},increment it by 1!`);
-        return await context.lists.CartItem.updateOne({
-            id: existingCartItem.id,
-            data: { quantity: existingCartItem.quantity + 1, },
-            resolveFields: false,
-        })
-    }
-    //5.If it isn't create a new cart item!
-    return await context.lists.CartItem.createOne({
-        data: {
-            product: { connect: { id: productId } },
-            user: { connect: { id: sesh.itemId } },
-        },
-        resolveFields: false,
+  console.log('ADDING TO CART');
+  //1.Query the current user to see if they are logged in.
+  const sesh = context.session as Session;
+  if (!sesh.itemId) {
+    throw new Error('You must be logged in to do this!');
+  }
+  //2.Query the current user cart.
+  const allCartItems = await context.lists.CartItem.findMany({
+    where: { user: { id: sesh.itemId }, product: { id: productId } },
+    resolveFields: 'id,quantity',
+  });
+  //3.See if the current item is in their cart.
+  //4.If it is increment by 1,
+  const [existingCartItem] = allCartItems;
+  if (existingCartItem) {
+    console.log(existingCartItem);
+    console.log(`There are already ${existingCartItem.quantity},increment it by 1!`);
+    return await context.lists.CartItem.updateOne({
+      id: existingCartItem.id,
+      data: { quantity: existingCartItem.quantity + 1, },
+      resolveFields: false,
     })
+  }
+  //5.If it isn't create a new cart item!
+  return await context.lists.CartItem.createOne({
+    data: {
+      product: { connect: { id: productId } },
+      user: { connect: { id: sesh.itemId } },
+    },
+    resolveFields: false,
+  })
 }
 export default addToCart;
 
@@ -261,8 +261,8 @@ Check : 3 and 4 ::
             data: {
                 quantity: existingCartItem.quantity + 1,
             }
+          }
         })
-    }
 
 
 
