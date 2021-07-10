@@ -26,3 +26,9 @@ export const permissionFields = {
         label: 'User can see and manage orders',
     }),
 };
+
+export type Permission = keyof typeof permissionFields;
+
+export const permissionList: Permission[] = Object.keys(
+    permissionFields
+) as Permission[];
